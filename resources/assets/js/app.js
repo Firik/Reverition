@@ -19,3 +19,5 @@ Vue.component('drag-n-drop-component', DragNDropComponent);
 const app = new Vue({
     el: '#app'
 });
+
+DragNDropComponent.init();

@@ -48,6 +48,12 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {
-        return parent::render($request, $exception);
+        // в режиме отладки выводим все ошибки как есть
+        if (config('app.debug')) {
+            return parent::render($request, $exception);
+        }
+
+        // иначе переадресация на главную
+        return redirect('/');
     }
 }

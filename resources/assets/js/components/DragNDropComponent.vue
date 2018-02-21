@@ -3,32 +3,36 @@
         height: 100vh;
     }
 
-    .drag-zone {
+    .dropzone {
         border-radius: 2px;
         border: 2px dashed #9c9c9c;
         height: 50vh;
-        width: 30vw;
-        min-height: 2rem;
-        min-width: 10rem;
-    }
-
-    .drag-n-drop-text {
+        width: 40vw;
+        min-height: 14rem;
+        min-width: 15rem;
         font-size: 3rem;
         color: #c0c0c0;
         cursor: default;
+        text-align: center;
     }
 </style>
 
 <template>
     <div class="content d-flex justify-content-center align-items-center">
-        <div id="drag-zone" class="drag-zone d-flex justify-content-center align-items-center">
-            <span class="drag-n-drop-text">Drag-n-drop here</span>
-        </div>
+        <div id="dropzone" class="dropzone d-flex justify-content-center align-items-center"></div>
     </div>
 </template>
 
 <script>
-    export default {
+    import Dropzone from '../../../../vendor/enyo/dropzone/dist/dropzone';
 
+    Dropzone.autoDiscover = false;
+
+    export default {
+        init: () => {
+            new Dropzone('#dropzone', {
+                url: '/load',
+            });
+        }
     }
 </script>
