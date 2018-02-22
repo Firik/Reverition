@@ -15,6 +15,11 @@
         cursor: default;
         text-align: center;
     }
+
+    .dz-preview {
+        font-size: 2rem;
+        color: #f36363;
+    }
 </style>
 
 <template>
@@ -30,8 +35,34 @@
 
     export default {
         init: () => {
-            new Dropzone('#dropzone', {
+            let dropzone = new Dropzone('#dropzone', {
                 url: '/load',
+                createImageThumbnails: false,
+                dictDefaultMessage: 'Drop Gif Here',
+                acceptedFiles: 'image/gif',
+                maxFilesize: 8,
+                clickable: false,
+                previewTemplate: `<div class="dz-preview dz-file-preview">
+                                  <div class="dz-details">
+                                    <div class="dz-filename"><span data-dz-name></span></div>
+                                    <div class="dz-size" data-dz-size></div>
+                                    <div class="dz-thumbnail" data-dz-thumbnail></div>
+                                  </div>
+                                  <div class="dz-progress"><span class="dz-upload" data-dz-uploadprogress></span></div>
+                                  <div class="dz-error-message"><span data-dz-errormessage></span></div>
+                                </div>`
+            });
+
+            dropzone.on('drop', function() {
+                let $info = document.querySelector('.dz-preview');
+                if ($info) {
+                    $info.remove();
+                }
+            });
+
+            dropzone.on('error', function(file) {
+                console.log(file);
+                alert(file.xhr.responseText);
             });
         }
     }

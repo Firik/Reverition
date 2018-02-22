@@ -15,4 +15,4 @@ Route::get('/', function () {
     return view('index');
 });
 
-Route::get('load', 'Gif\GifController@loadGif');
+Route::post('load', 'Gif\GifController@loadGif');
