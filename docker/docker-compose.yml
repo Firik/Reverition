@@ -1,9 +1,22 @@
 version: '3'
 services:
-  composer:
-    image: composer:latest
+  #composer:
+    #image: composer:latest
+    #volumes:
+    #  - ./../.:/app
+    #entrypoint:
+     # - composer
+      #- install
+      
+  php:
+    image: php:7.2
     volumes:
       - ./../.:/app
     entrypoint:
-      - composer
-      - install
+      - php
+      - /app/artisan
+      - serve
+      - --host=0.0.0.0
+      - --port=8000
+    ports:
+      - 80:8000
