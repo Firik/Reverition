@@ -36,7 +36,7 @@
     export default {
         init: () => {
             let dropzone = new Dropzone('#dropzone', {
-                url: '/load',
+                url: '/gif/load',
                 createImageThumbnails: false,
                 dictDefaultMessage: 'Drop Gif Here',
                 acceptedFiles: 'image/gif',
@@ -53,14 +53,14 @@
                                 </div>`
             });
 
-            dropzone.on('drop', function() {
+            dropzone.on('drop', function () {
                 let $info = document.querySelector('.dz-preview');
                 if ($info) {
                     $info.remove();
                 }
             });
 
-            dropzone.on('error', function(file) {
+            dropzone.on('error', function (file) {
                 console.log(file);
                 alert(file.xhr.responseText);
             });
