@@ -35,13 +35,17 @@
 
     export default {
         init: () => {
+            const token = document.head.querySelector('meta[name="csrf-token"]').content;
             let dropzone = new Dropzone('#dropzone', {
-                url: '/gif/load',
+                url: 'gif/load',
                 createImageThumbnails: false,
                 dictDefaultMessage: 'Drop Gif Here',
                 acceptedFiles: 'image/gif',
                 maxFilesize: 8,
                 clickable: false,
+                headers: {
+                    'x-csrf-token': token
+                },
                 previewTemplate: `<div class="dz-preview dz-file-preview">
                                   <div class="dz-details">
                                     <div class="dz-filename"><span data-dz-name></span></div>
@@ -53,16 +57,15 @@
                                 </div>`
             });
 
-            dropzone.on('drop', function () {
+            dropzone.on('drop', () => {
                 let $info = document.querySelector('.dz-preview');
                 if ($info) {
                     $info.remove();
                 }
             });
 
-            dropzone.on('error', function (file) {
-                console.log(file);
-                alert(file.xhr.responseText);
+            dropzone.on('error', file => {
+                alert(file.getError());
             });
         }
     }
