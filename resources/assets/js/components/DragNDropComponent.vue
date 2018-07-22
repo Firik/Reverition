@@ -42,7 +42,7 @@
                 dictDefaultMessage: 'Drop Gif Here',
                 acceptedFiles: 'image/gif',
                 maxFilesize: 8,
-                clickable: false,
+                clickable: true,
                 headers: {
                     'x-csrf-token': token
                 },
@@ -66,6 +66,10 @@
 
             dropzone.on('error', file => {
                 alert(file.getError());
+            });
+
+            dropzone.on('success', (file, response) => {
+                document.getElementById('app').innerHTML = response;
             });
         }
     }

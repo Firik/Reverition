@@ -49,9 +49,6 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {
-        if ($request->wantsJson()) {
-            return response()->json(['message' => $exception->getMessage()], 419);
-        }
 
         // в режиме отладки выводим все ошибки как есть
         if (config('app.debug')) {

@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers\Gif;
 
-use App\Services\GifService;
 use App\Http\Controllers\Controller;
+use App\Services\GifService;
+use Illuminate\Http\Request;
 
 class GifController extends Controller {
     private $service;
@@ -12,7 +13,12 @@ class GifController extends Controller {
         $this->service = new GifService();
     }
 
-    public function load(): string {
-        return $this->service->loadGif();
+    /**
+     * @param Request $request
+     * @return string
+     * @throws \ImagickException
+     */
+    public function load(Request $request): string {
+        return $this->service->loadGif($request);
     }
 }
