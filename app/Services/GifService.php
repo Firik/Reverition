@@ -16,8 +16,9 @@ class GifService {
     public function loadGif(Request $request): string {
         $uploadedFile = $request->file('file');
         $path = $uploadedFile->store('gif');
+
         $originalGif = new Imagick();
-        $originalGif->readImageBlob(Storage::disk('local')->get($path));
+        $originalGif->readImage($uploadedFile->getRealPath());
 
         $delay = $originalGif->getImageDelay();
         $reversedFrames = $this->getReversedFrames($originalGif);
@@ -31,20 +32,7 @@ class GifService {
         $revertedAnimation->clear();
         $revertedAnimation->destroy();
 
-        return 'Gif loaded';
-    }
-
-    /**
-     * @param Imagick $originalGif
-     * @return array
-     */
-    private function getReversedFrames(Imagick $originalGif): array {
-        $reversedFrames = [];
-        foreach ($originalGif as $frame) {
-            $reversedFrames[] = $frame->getImage();
-        }
-
-        return array_reverse($reversedFrames);
+        return Storage::url($filename);
     }
 
     /**
@@ -56,14 +44,32 @@ class GifService {
     private function createReversedGif(array $reversedFrames, int $delay): Imagick {
         $animation = new Imagick();
         $animation->setFormat('gif');
-        $firstFrame = null;
         foreach ($reversedFrames as $frame) {
-            $animation->addImage($frame);
+            $animation->readImageBlob($frame);
             $animation->setImageDelay($delay);
-            $animation->nextImage();
+            $animation->setImageIterations(0);
         }
+        $animation->mergeImageLayers(Imagick::LAYERMETHOD_OPTIMIZEPLUS);
 
         return $animation;
+    }
+
+    /**
+     * @param Imagick $originalGif
+     * @return array
+     */
+    private function getReversedFrames(Imagick $originalGif): array {
+        $reversedFrames = [];
+        foreach ($originalGif as $frame) {
+            $reversedFrames[] = $frame->getImageBlob();
+        }
+
+        $lastFrame = array_pop($reversedFrames);
+        $firstFrame = $reversedFrames[0];
+        $reversedFrames[0] = $lastFrame;
+        $reversedFrames[] = $firstFrame;
+        $reversedFrames = array_reverse($reversedFrames);
+        return $reversedFrames;
     }
 
     /**
@@ -73,6 +79,6 @@ class GifService {
      */
     private function saveGif(string $filename, Imagick $animation): void {
         $animation->writeImages($filename, true);
-        Storage::disk('local')->put($filename, $animation->getImagesBlob());
+        Storage::disk('local')->put('public/' . $filename, $animation->getImagesBlob());
     }
 }

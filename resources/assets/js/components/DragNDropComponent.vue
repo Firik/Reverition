@@ -69,7 +69,7 @@
             });
 
             dropzone.on('success', (file, response) => {
-                document.getElementById('app').innerHTML = response;
+                // location.href = response;
             });
         }
     }
