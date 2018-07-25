@@ -36,10 +36,6 @@ class GifService {
      * @return array
      */
     private function getReversedFrames(array $originalFrames): array {
-        $lastFrame = array_pop($originalFrames);
-        $firstFrame = $originalFrames[0];
-        $originalFrames[0] = $lastFrame;
-        $originalFrames[] = $firstFrame;
         return array_reverse($originalFrames);
     }
 
