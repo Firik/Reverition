@@ -16,7 +16,7 @@ class GifController extends Controller {
     /**
      * @param Request $request
      * @return string
-     * @throws \ImagickException
+     * @throws \Exception
      */
     public function load(Request $request): string {
         return $this->service->loadGif($request);
