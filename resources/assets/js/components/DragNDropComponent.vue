@@ -41,7 +41,7 @@
                 createImageThumbnails: false,
                 dictDefaultMessage: 'Drop Gif Here',
                 acceptedFiles: 'image/gif',
-                maxFilesize: 8,
+                maxFilesize: 64,
                 clickable: true,
                 headers: {
                     'x-csrf-token': token
