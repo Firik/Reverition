@@ -9,8 +9,8 @@ use Illuminate\Http\Request;
 class GifController extends Controller {
     private $service;
 
-    public function __construct() {
-        $this->service = new GifService();
+    public function __construct(GifService $service) {
+        $this->service = $service;
     }
 
     /**
