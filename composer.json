@@ -7,12 +7,10 @@
     "require": {
         "php": "^7.1.3",
         "barryvdh/laravel-ide-helper": "v2.4.3",
-        "enyo/dropzone": "^5.1",
         "fideloper/proxy": "~4.0",
         "laravel/framework": "5.6.*",
         "laravel/tinker": "~1.0",
-        "sybio/gif-creator": "^1.0",
-        "sybio/gif-frame-extractor": "^1.0"
+        "vvkosty/revertition": "dev-master"
     },
     "require-dev": {
         "roave/security-advisories": "dev-master",
@@ -23,6 +21,15 @@
         "phpunit/phpunit": "~7.0",
         "symfony/thanks": "~1.0"
     },
+    "repositories": [
+        {
+            "type": "path",
+            "url": "packages/vvkosty/revertition",
+            "options": {
+                "symlink": true
+            }
+        }
+    ],
     "autoload": {
         "classmap": [
             "database/seeds",
