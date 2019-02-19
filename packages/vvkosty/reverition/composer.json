@@ -1,0 +1,20 @@
+{
+  "name": "vvkosty/reverition",
+  "description": "Create reverted gif from source",
+  "license": "MIT",
+  "type": "package",
+  "require": {
+    "enyo/dropzone": "^5.1",
+    "sybio/gif-creator": "^1.0",
+    "sybio/gif-frame-extractor": "^1.0",
+    "doctrine/dbal": "*"
+  },
+  "require-dev": {
+    "roave/security-advisories": "dev-master"
+  },
+  "autoload": {
+    "psr-4": {
+      "vvkosty\\reverition\\": "src"
+    }
+  }
+}

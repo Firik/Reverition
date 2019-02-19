@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\Gif;
+namespace vvkosty\reverition\Controllers\Media;
 
 use App\Http\Controllers\Controller;
-use App\Services\GifService;
 use Illuminate\Http\Request;
+use vvkosty\reverition\Services\GifService;
 
-class GifController extends Controller {
+class MediaController extends Controller {
     private $service;
 
     public function __construct(GifService $service) {
@@ -19,6 +19,11 @@ class GifController extends Controller {
      * @throws \Exception
      */
     public function load(Request $request): string {
-        return $this->service->loadGif($request);
+        $this->service->load($request);
+        return $this->service->getUrl();
+    }
+
+    public function result() {
+        return \view('result');
     }
 }

@@ -150,6 +150,7 @@ return [
         /*
          * Package Service Providers...
          */
+        \vvkosty\reverition\Providers\RevertitionServiceProvider::class,
 
         /*
          * Application Service Providers...

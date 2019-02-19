@@ -10,7 +10,7 @@
         "fideloper/proxy": "~4.0",
         "laravel/framework": "5.6.*",
         "laravel/tinker": "~1.0",
-        "vvkosty/revertition": "dev-master"
+        "vvkosty/reverition": "dev-master"
     },
     "require-dev": {
         "roave/security-advisories": "dev-master",
@@ -24,7 +24,7 @@
     "repositories": [
         {
             "type": "path",
-            "url": "packages/vvkosty/revertition",
+            "url": "packages/vvkosty/reverition",
             "options": {
                 "symlink": true
             }

@@ -29,15 +29,15 @@
 </template>
 
 <script>
-    import Dropzone from '../../../../vendor/enyo/dropzone/dist/dropzone';
+    import Dropzone from '../../../../../vendor/enyo/dropzone/dist/dropzone';
 
     Dropzone.autoDiscover = false;
 
     export default {
-        init: () => {
+        mounted: () => {
             const token = document.head.querySelector('meta[name="csrf-token"]').content;
             let dropzone = new Dropzone('#dropzone', {
-                url: 'gif/load',
+                url: 'load',
                 createImageThumbnails: false,
                 dictDefaultMessage: 'Drop Gif Here',
                 acceptedFiles: 'image/gif',
