@@ -29,47 +29,39 @@
 </template>
 
 <script>
-    import Dropzone from '../../../../../vendor/enyo/dropzone/dist/dropzone';
+    import Dropzone from '../../../../vendor/enyo/dropzone/dist/dropzone';
 
     Dropzone.autoDiscover = false;
 
     export default {
-        mounted: () => {
+        mounted() {
             const token = document.head.querySelector('meta[name="csrf-token"]').content;
-            let dropzone = new Dropzone('#dropzone', {
+            let dropzone = new Dropzone('div#dropzone', {
                 url: 'load',
                 createImageThumbnails: false,
                 dictDefaultMessage: 'Drop Gif Here',
                 acceptedFiles: 'image/gif',
                 maxFilesize: 64,
+                maxFiles: 1,
                 clickable: true,
                 headers: {
                     'x-csrf-token': token
                 },
                 previewTemplate: `<div class="dz-preview dz-file-preview">
-                                  <div class="dz-details">
-                                    <div class="dz-filename"><span data-dz-name></span></div>
-                                    <div class="dz-size" data-dz-size></div>
-                                    <div class="dz-thumbnail" data-dz-thumbnail></div>
-                                  </div>
-                                  <div class="dz-progress"><span class="dz-upload" data-dz-uploadprogress></span></div>
-                                  <div class="dz-error-message"><span data-dz-errormessage></span></div>
-                                </div>`
-            });
-
-            dropzone.on('drop', () => {
-                let $info = document.querySelector('.dz-preview');
-                if ($info) {
-                    $info.remove();
-                }
-            });
-
-            dropzone.on('error', file => {
-                alert(file.getError());
+                                    <div class="dz-progress">
+                                        <span class="dz-upload" data-dz-uploadprogress></span>
+                                    </div>
+                                    <div class="dz-error-message">
+                                        <span data-dz-errormessage></span>
+                                    </div>
+                                 </div>`
             });
 
             dropzone.on('success', (file, response) => {
-                // location.href = response;
+                this.$store.commit('setUrl', response.url);
+                this.$store.commit('setFilename', response.filename);
+
+                this.$router.push(response.redirectUrl);
             });
         }
     }

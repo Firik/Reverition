@@ -16,7 +16,7 @@
     </head>
     <body>
         <div id="app">
-            <drag-n-drop-component></drag-n-drop-component>
+            <router-view></router-view>
         </div>
     </body>
 </html>

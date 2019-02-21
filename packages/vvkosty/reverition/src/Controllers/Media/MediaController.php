@@ -15,15 +15,15 @@ class MediaController extends Controller {
 
     /**
      * @param Request $request
-     * @return string
+     * @return array
      * @throws \Exception
      */
-    public function load(Request $request): string {
+    public function load(Request $request): array {
         $this->service->load($request);
-        return $this->service->getUrl();
-    }
-
-    public function result() {
-        return \view('result');
+        return [
+            'url' => $this->service->getUrl(),
+            'filename' => $this->service->getFileName(),
+            'redirectUrl' => 'result',
+        ];
     }
 }

@@ -1,20 +1,48 @@
-/**
- * First we will load all of this project's JavaScript dependencies which
- * includes Vue and other libraries. It is a great starting point when
- * building robust, powerful web applications using Vue and Laravel.
- */
 import Vue from "vue";
+import VueRouter from 'vue-router'
+import DragNDropComponent from "./components/DragNDropComponent";
+import ResultPageComponent from "./components/ResultPageComponent";
+import Vuex from "vuex";
 
-require('../../../vendor/vvkosty/reverition/src/resources/assets/js/app');
+Vue.use(VueRouter);
+Vue.use(Vuex);
 
-window.Vue = Vue;
+const store = new Vuex.Store({
+    strict: true,
+    state: {
+        url: '',
+        filename: ''
+    },
+    mutations: {
+        setUrl(state, url) {
+            state.url = url;
+        },
+        setFilename(state, filename) {
+            state.filename = filename;
+        }
+    }
+});
 
-/**
- * Next, we will create a fresh Vue application instance and attach it to
- * the page. Then, you may begin adding components to this application
- * or customize the JavaScript scaffolding to fit your unique needs.
- */
+const routes = [
+    {path: '/', component: DragNDropComponent},
+    {
+        path: '/result',
+        component: ResultPageComponent,
+        beforeEnter: (to, from, next) => {
+            if (store.state.url) {
+                next();
+            } else {
+                next('/');
+            }
+        }
+    }
+];
+
+const router = new VueRouter({
+    routes
+});
 
 const app = new Vue({
-    el: '#app'
-});
+    router,
+    store
+}).$mount('#app');
