@@ -20,7 +20,7 @@ class GifService
     public function load(Request $request): string
     {
         $uploadedFile = $request->file('file');
-        $path = $uploadedFile->store('gif');
+        $uploadedFile->store('gif');
 
         $originalGif = new GifFrameExtractor();
         $originalFrames = $originalGif->extract($uploadedFile->getRealPath());
@@ -29,7 +29,7 @@ class GifService
         $durations = $originalGif->getFrameDurations();
         $revertedAnimationString = $this->createReversedGif($reversedFrames, $durations);
 
-        $this->filename = 'reverted_' . explode('/', $path)[1];
+        $this->filename = 'reverted_' . $uploadedFile->getClientOriginalName();
         $this->saveGif($this->filename, $revertedAnimationString);
 
         return true;
@@ -71,6 +71,14 @@ class GifService
      */
     public function getUrl(): string
     {
-        return Storage::url($this->filename);
+        return asset(Storage::url($this->filename));
+    }
+
+    /**
+     * @return string
+     */
+    public function getFileName(): string
+    {
+        return $this->filename;
     }
 }
