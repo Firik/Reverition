@@ -11,7 +11,8 @@ const store = new Vuex.Store({
     strict: true,
     state: {
         url: '',
-        filename: ''
+        filename: '',
+        preview: ''
     },
     mutations: {
         setUrl(state, url) {
@@ -19,6 +20,9 @@ const store = new Vuex.Store({
         },
         setFilename(state, filename) {
             state.filename = filename;
+        },
+        setPreview(state, base64Data) {
+            state.preview = base64Data;
         }
     }
 });
