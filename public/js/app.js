@@ -163,6 +163,16 @@ _vendor_enyo_dropzone_dist_dropzone__WEBPACK_IMPORTED_MODULE_0___default.a.autoD
 
       _this.flashError(response);
     });
+  },
+  beforeDestroy: function beforeDestroy() {
+    var flashWrapper = document.getElementsByClassName('flash__wrapper');
+    var countBlocks = flashWrapper.length;
+
+    for (var i = 0; i < countBlocks; i++) {
+      while (flashWrapper[i].firstChild) {
+        flashWrapper[i].removeChild(flashWrapper[i].firstChild);
+      }
+    }
   }
 });
 
