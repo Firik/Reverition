@@ -1,11 +1,15 @@
 import Vue from "vue";
 import VueRouter from 'vue-router'
+import Vuex from "vuex";
+import VueFlashMessage from 'vue-flash-message';
 import DragNDropComponent from "./components/DragNDropComponent";
 import ResultPageComponent from "./components/ResultPageComponent";
-import Vuex from "vuex";
+
+import 'vue-flash-message/dist/vue-flash-message.min.css';
 
 Vue.use(VueRouter);
 Vue.use(Vuex);
+Vue.use(VueFlashMessage);
 
 const store = new Vuex.Store({
     strict: true,

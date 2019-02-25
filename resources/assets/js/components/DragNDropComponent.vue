@@ -12,7 +12,21 @@
 
 <template>
     <div class="row">
-        <div id="dropzone" class="dropzone d-flex justify-content-center align-items-center offset-3 col-6 offset-3"></div>
+        <div id="dropzone" class="dropzone d-flex justify-content-center align-items-center offset-1 col-10"></div>
+
+        <div id="previewHtml">
+            <div class="dz-preview dz-file-preview">
+                <div class="dz-details">
+                    <img class="js-previewImage" style="display: none" data-dz-thumbnail/>
+                </div>
+                <div class="dz-progress">
+                    <span class="dz-upload" data-dz-uploadprogress></span>
+                </div>
+                <div class="dz-error-message">
+                    <span data-dz-errormessage></span>
+                </div>
+            </div>
+        </div>
     </div>
 </template>
 
@@ -35,17 +49,7 @@
                 headers: {
                     'x-csrf-token': token
                 },
-                previewTemplate: `<div class="dz-preview dz-file-preview">
-                                    <div class="dz-details">
-                                        <img class="js-previewImage" style="display: none" data-dz-thumbnail />
-                                    </div>
-                                    <div class="dz-progress">
-                                        <span class="dz-upload" data-dz-uploadprogress></span>
-                                    </div>
-                                    <div class="dz-error-message">
-                                        <span data-dz-errormessage></span>
-                                    </div>
-                                 </div>`
+                previewTemplate: document.getElementById('previewHtml').innerHTML
             });
 
             dropzone.on('success', (file, response) => {
@@ -55,6 +59,11 @@
 
                 this.$router.push(response.redirectUrl);
             });
+
+            dropzone.on('error', (file, response) => {
+                dropzone.removeFile(file);
+                this.flashError(response);
+            });
         }
-    }
+    };
 </script>

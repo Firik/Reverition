@@ -37,7 +37,7 @@
         border-color: transparent transparent transparent #444444;
     }
 
-    button:focus {
+    .button:focus {
         outline: 0;
     }
 </style>
