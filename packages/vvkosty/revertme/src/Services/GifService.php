@@ -1,6 +1,6 @@
 <?php
 
-namespace vvkosty\reverition\Services;
+namespace vvkosty\revertme\Services;
 
 
 use GifCreator\GifCreator;

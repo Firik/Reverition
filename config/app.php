@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'name' => env('APP_NAME', 'Reverition'),
+    'name' => env('APP_NAME', 'Revert Me'),
 
     /*
     |--------------------------------------------------------------------------
@@ -150,7 +150,7 @@ return [
         /*
          * Package Service Providers...
          */
-        vvkosty\reverition\Providers\RevertitionServiceProvider::class,
+        vvkosty\revertme\Providers\RevertMeServiceProvider::class,
 
         /*
          * Application Service Providers...

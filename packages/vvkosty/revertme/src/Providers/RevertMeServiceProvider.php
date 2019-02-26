@@ -1,12 +1,12 @@
 <?php
 
 
-namespace vvkosty\reverition\Providers;
+namespace vvkosty\revertme\Providers;
 
 use Illuminate\Support\ServiceProvider;
-use vvkosty\reverition\Services\GifService;
+use vvkosty\revertme\Services\GifService;
 
-class RevertitionServiceProvider extends ServiceProvider
+class RevertMeServiceProvider extends ServiceProvider
 {
     /**
      * Bootstrap the application services.
@@ -18,7 +18,7 @@ class RevertitionServiceProvider extends ServiceProvider
         $this->loadRoutesFrom(__DIR__ . '/../Routes/web.php');
 
         $this->publishes([
-            __DIR__ . '/../resources/assets' => resource_path('assets/vendor/reverition')
+            __DIR__ . '/../resources/assets' => resource_path('assets/vendor/revertme')
         ], 'vue-components');
     }
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace vvkosty\reverition\Middleware;
+namespace vvkosty\revertme\Middleware;
 
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\UploadedFile;

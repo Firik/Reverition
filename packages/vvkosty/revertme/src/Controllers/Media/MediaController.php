@@ -1,10 +1,10 @@
 <?php
 
-namespace vvkosty\reverition\Controllers\Media;
+namespace vvkosty\revertme\Controllers\Media;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use vvkosty\reverition\Services\GifService;
+use vvkosty\revertme\Services\GifService;
 
 class MediaController extends Controller {
     private $service;

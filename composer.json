@@ -11,7 +11,7 @@
         "laravel/framework": "5.6.*",
         "laravel/tinker": "~1.0",
         "enyo/dropzone": "^5.1",
-        "vvkosty/reverition": "dev-master"
+        "vvkosty/revertme": "dev-master"
     },
     "require-dev": {
         "roave/security-advisories": "dev-master",
@@ -25,7 +25,7 @@
     "repositories": [
         {
             "type": "path",
-            "url": "packages/vvkosty/reverition",
+            "url": "packages/vvkosty/revertme",
             "options": {
                 "symlink": true
             }

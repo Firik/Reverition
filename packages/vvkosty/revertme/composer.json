@@ -1,5 +1,5 @@
 {
-  "name": "vvkosty/reverition",
+  "name": "vvkosty/revertme",
   "description": "Create reverted gif from source",
   "license": "MIT",
   "type": "package",
@@ -13,7 +13,7 @@
   },
   "autoload": {
     "psr-4": {
-      "vvkosty\\reverition\\": "src"
+      "vvkosty\\revertme\\": "src"
     }
   }
 }

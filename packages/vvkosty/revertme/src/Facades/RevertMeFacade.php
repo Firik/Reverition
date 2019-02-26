@@ -1,10 +1,10 @@
 <?php
 
-namespace vvkosty\reverition\Facades;
+namespace vvkosty\revertme\Facades;
 
 use Illuminate\Support\Facades\Facade;
 
-class RevertitionFacade extends Facade
+class RevertMeFacade extends Facade
 {
     protected static function getFacadeAccessor()
     {
