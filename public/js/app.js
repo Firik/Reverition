@@ -129,6 +129,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 
 _vendor_enyo_dropzone_dist_dropzone__WEBPACK_IMPORTED_MODULE_0___default.a.autoDiscover = false;
 
@@ -147,7 +151,6 @@ function clearFlashMessages() {
   mounted: function mounted() {
     var _this = this;
 
-    var token = document.head.querySelector('meta[name="csrf-token"]').content;
     var dropzone = new _vendor_enyo_dropzone_dist_dropzone__WEBPACK_IMPORTED_MODULE_0___default.a('div#dropzone', {
       url: 'load',
       dictDefaultMessage: 'Drop Gif Here',
@@ -157,7 +160,7 @@ function clearFlashMessages() {
       clickable: true,
       thumbnailMethod: 'crop',
       headers: {
-        'x-csrf-token': token
+        'X-CSRF-TOKEN': document.head.querySelector('meta[name="csrf-token"]').content
       },
       previewTemplate: document.getElementById('previewHtml').innerHTML
     });
@@ -338,7 +341,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n.dropzone {\n    border-radius: 2px;\n    border: 2px dashed #9c9c9c;\n    min-height: 15rem;\n    font-size: 3rem;\n    color: #c0c0c0;\n    cursor: default;\n    text-align: center;\n}\n", ""]);
+exports.push([module.i, "\n.dropzone {\n    border-radius: 2px;\n    border: 2px dashed #9c9c9c;\n    min-height: 15rem;\n    font-size: 3rem;\n    color: #c0c0c0;\n    cursor: default;\n    text-align: center;\n}\n#previewHtml img {\n    display: none;\n}\n", ""]);
 
 // exports
 
@@ -1563,7 +1566,6 @@ var staticRenderFns = [
           _c("div", { staticClass: "dz-details" }, [
             _c("img", {
               staticClass: "js-previewImage",
-              staticStyle: { display: "none" },
               attrs: { "data-dz-thumbnail": "" }
             })
           ]),

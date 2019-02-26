@@ -8,6 +8,10 @@
         cursor: default;
         text-align: center;
     }
+
+    #previewHtml img {
+        display: none;
+    }
 </style>
 
 <template>
@@ -17,7 +21,7 @@
         <div id="previewHtml">
             <div class="dz-preview dz-file-preview">
                 <div class="dz-details">
-                    <img class="js-previewImage" style="display: none" data-dz-thumbnail/>
+                    <img class="js-previewImage" data-dz-thumbnail/>
                 </div>
                 <div class="dz-progress">
                     <span class="dz-upload" data-dz-uploadprogress></span>
@@ -48,7 +52,6 @@
 
     export default {
         mounted() {
-            const token = document.head.querySelector('meta[name="csrf-token"]').content;
             const dropzone = new Dropzone('div#dropzone', {
                 url: 'load',
                 dictDefaultMessage: 'Drop Gif Here',
@@ -58,7 +61,7 @@
                 clickable: true,
                 thumbnailMethod: 'crop',
                 headers: {
-                    'x-csrf-token': token
+                    'X-CSRF-TOKEN': document.head.querySelector('meta[name="csrf-token"]').content
                 },
                 previewTemplate: document.getElementById('previewHtml').innerHTML
             });
