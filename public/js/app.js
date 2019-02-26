@@ -131,6 +131,18 @@ __webpack_require__.r(__webpack_exports__);
 //
 
 _vendor_enyo_dropzone_dist_dropzone__WEBPACK_IMPORTED_MODULE_0___default.a.autoDiscover = false;
+
+function clearFlashMessages() {
+  var flashWrapper = document.getElementsByClassName('flash__wrapper');
+  var countBlocks = flashWrapper.length;
+
+  for (var i = 0; i < countBlocks; i++) {
+    while (flashWrapper[i].firstChild) {
+      flashWrapper[i].removeChild(flashWrapper[i].firstChild);
+    }
+  }
+}
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   mounted: function mounted() {
     var _this = this;
@@ -165,14 +177,7 @@ _vendor_enyo_dropzone_dist_dropzone__WEBPACK_IMPORTED_MODULE_0___default.a.autoD
     });
   },
   beforeDestroy: function beforeDestroy() {
-    var flashWrapper = document.getElementsByClassName('flash__wrapper');
-    var countBlocks = flashWrapper.length;
-
-    for (var i = 0; i < countBlocks; i++) {
-      while (flashWrapper[i].firstChild) {
-        flashWrapper[i].removeChild(flashWrapper[i].firstChild);
-      }
-    }
+    clearFlashMessages();
   }
 });
 

@@ -35,6 +35,17 @@
 
     Dropzone.autoDiscover = false;
 
+    function clearFlashMessages() {
+        const flashWrapper = document.getElementsByClassName('flash__wrapper');
+        const countBlocks = flashWrapper.length;
+
+        for (let i = 0; i < countBlocks; i++) {
+            while (flashWrapper[i].firstChild) {
+                flashWrapper[i].removeChild(flashWrapper[i].firstChild);
+            }
+        }
+    }
+
     export default {
         mounted() {
             const token = document.head.querySelector('meta[name="csrf-token"]').content;
@@ -65,16 +76,8 @@
                 this.flashError(response);
             });
         },
-
         beforeDestroy() {
-            const flashWrapper = document.getElementsByClassName('flash__wrapper');
-            const countBlocks = flashWrapper.length;
-
-            for (let i = 0; i < countBlocks; i++) {
-                while (flashWrapper[i].firstChild) {
-                    flashWrapper[i].removeChild(flashWrapper[i].firstChild);
-                }
-            }
+            clearFlashMessages();
         }
     };
 </script>
