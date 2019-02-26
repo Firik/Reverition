@@ -6,7 +6,7 @@
   "require": {
     "sybio/gif-creator": "^1.0",
     "sybio/gif-frame-extractor": "^1.0",
-    "doctrine/dbal": "*"
+    "doctrine/dbal": "~2.3"
   },
   "require-dev": {
     "roave/security-advisories": "dev-master"
