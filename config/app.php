@@ -1,4 +1,4 @@
- <?php
+<?php
 
 return [
 
@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'name' => env('APP_NAME', 'Laravel'),
+    'name' => env('APP_NAME', 'Reverition'),
 
     /*
     |--------------------------------------------------------------------------
@@ -65,7 +65,7 @@ return [
     |
     */
 
-    'timezone' => 'UTC',
+    'timezone' => 'Europe/Moscow',
 
     /*
     |--------------------------------------------------------------------------
@@ -150,7 +150,7 @@ return [
         /*
          * Package Service Providers...
          */
-        \vvkosty\reverition\Providers\RevertitionServiceProvider::class,
+        vvkosty\reverition\Providers\RevertitionServiceProvider::class,
 
         /*
          * Application Service Providers...
