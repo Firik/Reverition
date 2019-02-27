@@ -1,10 +1,9 @@
 <style>
     .dropzone {
         border-radius: 2px;
-        border: 2px dashed #545454;
+        border: 2px dashed #212529;
         min-height: 15rem;
         font-size: 3rem;
-        color: #545454;
         cursor: default;
         text-align: center;
     }
