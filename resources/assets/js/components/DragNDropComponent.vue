@@ -16,20 +16,6 @@
 <template>
     <div class="row">
         <div id="dropzone" class="dropzone d-flex justify-content-center align-items-center offset-1 col-10"></div>
-
-        <div id="previewHtml">
-            <div class="dz-preview dz-file-preview">
-                <div class="dz-details">
-                    <img class="js-previewImage" data-dz-thumbnail/>
-                </div>
-                <div class="dz-progress">
-                    <span class="dz-upload" data-dz-uploadprogress></span>
-                </div>
-                <div class="dz-error-message">
-                    <span data-dz-errormessage></span>
-                </div>
-            </div>
-        </div>
     </div>
 </template>
 
@@ -51,24 +37,32 @@
 
     export default {
         mounted() {
+            let thumbnailDataUrl = '';
+            
             const dropzone = new Dropzone('div#dropzone', {
                 url: 'load',
-                dictDefaultMessage: 'Drop Gif Here',
-                acceptedFiles: 'image/gif',
-                maxFilesize: 64,
-                maxFiles: 1,
-                clickable: true,
-                thumbnailMethod: 'crop',
                 headers: {
                     'X-CSRF-TOKEN': document.head.querySelector('meta[name="csrf-token"]').content
                 },
-                previewTemplate: document.getElementById('previewHtml').innerHTML
+                dictDefaultMessage: 'Drop Gif Here',
+                acceptedFiles: 'image/gif',
+                maxFilesize: 64,
+                maxThumbnailFilesize: 64,
+                maxFiles: 1,
+                clickable: true,
+                previewTemplate: '',
+
+                addedfile: function (file) {},
+
+                thumbnail: function (file, dataUrl) {
+                    thumbnailDataUrl = dataUrl;
+                }
             });
 
             dropzone.on('success', (file, response) => {
                 this.$store.commit('setUrl', response.url);
                 this.$store.commit('setFilename', response.filename);
-                this.$store.commit('setPreview', document.body.querySelector('.js-previewImage').src);
+                this.$store.commit('setPreview', thumbnailDataUrl);
 
                 this.$router.push(response.redirectUrl);
             });
