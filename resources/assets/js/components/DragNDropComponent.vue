@@ -7,10 +7,6 @@
         cursor: default;
         text-align: center;
     }
-
-    #previewHtml img {
-        display: none;
-    }
 </style>
 
 <template>
@@ -38,7 +34,7 @@
     export default {
         mounted() {
             let thumbnailDataUrl = '';
-            
+
             const dropzone = new Dropzone('div#dropzone', {
                 url: 'load',
                 headers: {
