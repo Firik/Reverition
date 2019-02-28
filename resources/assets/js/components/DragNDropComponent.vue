@@ -41,6 +41,7 @@
                     'X-CSRF-TOKEN': document.head.querySelector('meta[name="csrf-token"]').content
                 },
                 dictDefaultMessage: 'Drop Gif Here',
+                dictUploadCanceled: 'Upload was failed, try again',
                 acceptedFiles: 'image/gif',
                 maxFilesize: 36,
                 maxThumbnailFilesize: 36,
@@ -56,11 +57,23 @@
             });
 
             dropzone.on('success', (file, response) => {
+                if (!response.url) {
+                    dropzone.removeFile(file);
+                    this.flashError(response);
+                    return false;
+                }
+
                 this.$store.commit('setUrl', response.url);
                 this.$store.commit('setFilename', response.filename);
                 this.$store.commit('setPreview', thumbnailDataUrl);
 
                 this.$router.push(response.redirectUrl);
+            });
+
+            dropzone.on('sending', (file, xhr) => {
+                xhr.ontimeout = () => {
+                    dropzone.removeFile(file);
+                };
             });
 
             dropzone.on('error', (file, response) => {
