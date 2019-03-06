@@ -5,8 +5,7 @@
   "type": "package",
   "require": {
     "sybio/gif-creator": "^1.0",
-    "sybio/gif-frame-extractor": "^1.0",
-    "doctrine/dbal": "~2.3"
+    "sybio/gif-frame-extractor": "^1.0"
   },
   "require-dev": {
     "roave/security-advisories": "dev-master"

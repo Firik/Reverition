@@ -5,7 +5,8 @@ namespace vvkosty\revertme\Middleware;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\UploadedFile;
 
-class ErrorIfNotGifFile {
+class ErrorIfNotGifFile
+{
 
     /** @var array */
     protected $allowedFileExtensions = ['gif'];
@@ -18,7 +19,8 @@ class ErrorIfNotGifFile {
      *
      * @return mixed
      */
-    public function handle($request, \Closure $next) {
+    public function handle($request, \Closure $next)
+    {
         /** @var \Illuminate\Http\UploadedFile $uploadedFile */
         $uploadedFile = $request->file()['file'];
         if (!($uploadedFile instanceof UploadedFile) ||

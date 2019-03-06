@@ -150,7 +150,7 @@ return [
         /*
          * Package Service Providers...
          */
-        vvkosty\revertme\Providers\RevertMeServiceProvider::class,
+        vvkosty\revertme\Providers\GifConverterServiceProvider::class,
 
         /*
          * Application Service Providers...
