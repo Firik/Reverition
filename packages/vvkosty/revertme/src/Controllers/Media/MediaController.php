@@ -29,8 +29,8 @@ class MediaController extends Controller
     {
         $uploadedFile = $request->file('file');
         $uploadedFile->store('gif');
-        [$originalFrames, $durations] = $this->service->getFrames($uploadedFile);
-        $revertedAnimationString = $this->service->getRevertedData($originalFrames, $durations);
+        [$originalFrames, $durations] = $this->service->getOriginalFramesData($uploadedFile);
+        $revertedAnimationString = $this->service->createReversed($originalFrames, $durations);
 
         $this->convertedFile->setName($uploadedFile->getClientOriginalName());
         $this->convertedFile->saveToDisk($revertedAnimationString);
@@ -38,7 +38,7 @@ class MediaController extends Controller
 
         return [
             'url' => $this->convertedFile->getAbsoluteUrl(),
-            'filename' => $this->convertedFile->name,
+            'filename' => $this->convertedFile->getName(),
             'redirectUrl' => 'result',
         ];
     }

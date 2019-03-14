@@ -5,7 +5,7 @@ namespace vvkosty\revertme\Services;
 
 use GifCreator\GifCreator;
 use GifFrameExtractor\GifFrameExtractor;
-use Illuminate\Http\UploadedFile;
+use SplFileInfo;
 use vvkosty\revertme\Interfaces\ConverterService;
 
 class GifConverterService implements ConverterService
@@ -23,41 +23,29 @@ class GifConverterService implements ConverterService
     }
 
     /**
-     * @param array $reversedFrames
+     * @param array $originalFrames
      * @param array $delays
      *
      * @return string
      * @throws \Exception
      */
-    public function createReversed(array $reversedFrames, array $delays): string
+    public function createReversed(array $originalFrames, array $delays): string
     {
-        $this->GifCreator->create(array_column($reversedFrames, 'image'), $delays);
+        $this->GifCreator->create(array_column(array_reverse($originalFrames), 'image'), $delays);
         return $this->GifCreator->getGif();
     }
 
     /**
-     * @param UploadedFile $uploadedFile
+     * @param SplFileInfo $uploadedFile
      *
      * @return array
      * @throws \Exception
      */
-    public function getFrames(UploadedFile $uploadedFile): array
+    public function getOriginalFramesData(SplFileInfo $uploadedFile): array
     {
         $originalFrames = $this->GifFrameExtractor->extract($uploadedFile->getRealPath());
         $durations = $this->GifFrameExtractor->getFrameDurations();
         return [$originalFrames, $durations];
-    }
-
-    /**
-     * @param array $originalFrames
-     * @param array $durations
-     *
-     * @return string
-     * @throws \Exception
-     */
-    public function getRevertedData(array $originalFrames, array $durations): string
-    {
-        return $this->createReversed(array_reverse($originalFrames), $durations);
     }
 
 }

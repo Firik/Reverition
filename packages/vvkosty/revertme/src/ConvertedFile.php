@@ -51,4 +51,12 @@ class ConvertedFile extends Model
     {
         $this->attributes['name'] = $this->filenamePrefix . $name;
     }
+
+    /**
+     * @return string
+     */
+    public function getName(): string
+    {
+        return $this->name;
+    }
 }

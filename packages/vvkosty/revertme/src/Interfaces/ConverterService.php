@@ -2,7 +2,7 @@
 
 namespace vvkosty\revertme\Interfaces;
 
-use Illuminate\Http\UploadedFile;
+use SplFileInfo;
 
 interface ConverterService
 {
@@ -17,19 +17,11 @@ interface ConverterService
     public function createReversed(array $reversedFrames, array $delays): string;
 
     /**
-     * @param UploadedFile $uploadedFile
+     * @param SplFileInfo $uploadedFile
      *
      * @return array
      * @throws \Exception
      */
-    public function getFrames(UploadedFile $uploadedFile): array;
+    public function getOriginalFramesData(SplFileInfo $uploadedFile): array;
 
-    /**
-     * @param array $originalFrames
-     * @param array $durations
-     *
-     * @return string
-     * @throws \Exception
-     */
-    public function getRevertedData(array $originalFrames, array $durations): string;
 }
